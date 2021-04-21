@@ -1,0 +1,14 @@
+{
+    "/api/*": {
+        "target": "https://recipeslog.000webhostapp.com",
+        "secure": true,
+        "pathRewrite": {
+            "^/api": "https://recipeslog.000webhostapp.com/api"
+        },
+        "changeOrigin": true,
+        "proxy_connect_timeout": 6000,
+        "proxy_send_timeout": 6000,
+        "proxy_read_timeout": 6000,
+        "send_timeout": 6000
+    }
+}

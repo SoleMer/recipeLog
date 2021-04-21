@@ -1,0 +1,14 @@
+<div class="content">
+    <div class="col-center-4 text-center border-radius vertical-center">
+      <h3>Ingresar contraseña</h3>
+      <form action="">
+        <div class="margin">
+          <input type="password" [(ngModel)]='user.password' [ngModelOptions]="{standalone: true}">
+          <div *ngIf="error">
+            <span>contraseña incorrecta</span>
+          </div>
+        </div>
+        <button class="btn" [routerLink]="['../recipes']" (click)="login()" [disabled]="loading">Entrar</button>
+      </form>
+    </div>
+  </div>

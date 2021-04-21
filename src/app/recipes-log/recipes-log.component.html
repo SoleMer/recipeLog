@@ -1,0 +1,43 @@
+<div *ngIf="(permission$ |async)">
+  <div class="content">
+    <div class="col-right-1">
+      <img src="../assets/img/icons/refresh.svg" class="icon" (click)="getRecipes()">
+    </div>
+    <table class="table col-center-10">
+        <thead>
+          <th class="col-1-2">FOLIO</th>
+          <th class="col-3-2">RECETA</th>
+          <th class="col-5-2">PACIENTE</th>
+          <th class="col-7-2">DNI</th>
+          <th class="col-9-2">FECHA</th>
+        </thead>
+        <tr *ngFor="let recipe of (recipes$ | async)">
+          <td class="col-1-2">{{recipe.folder_number}}</td>
+          <td class="col-3-2">{{recipe.recipe_number}}</td>
+          <td class="col-5-2">{{recipe.patient_name}}</td>
+          <td class="col-7-2">{{recipe.patient_dni}}</td>
+          <td class="col-9-2">{{recipe.date}}</td>
+        </tr>
+    </table>
+  </div>
+  <div class="content">
+    <div class="col-center-4 text-center border-radius">
+      <h3>Nueva receta</h3>
+      <form action="">
+        <div class="margin">
+          <label>Paciente</label>
+        </div>
+        <div class="margin">
+          <input type="text" [(ngModel)]='recipe.patient_name' [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="margin">
+          <label>DNI</label>
+        </div>
+        <div class="margin">
+          <input type="text" [(ngModel)]='recipe.patient_dni' [ngModelOptions]="{standalone: true}">
+        </div>
+        <button class="btn" (click)="save()" [disabled]="loading">Guardar</button>
+      </form>
+    </div>
+  </div>  
+</div>
