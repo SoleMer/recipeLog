@@ -5,6 +5,7 @@ import { map, tap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 
 const URL = 'https://recipeslog.000webhostapp.com/api/check';
+//const URL = '/api/check';
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,14 @@
 <div *ngIf="(permission$ |async)">
   <div class="content">
+    <div class="col-2">
+      <label for="patient">Buscar paciente</label>
+      <input type="text" name="patient" (change)="searchPatient()" [(ngModel)]='patient' [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="col-2-1">
+      <button class="btn" (click)="clearFilter()" [disabled]="loading">Limpiar filros</button>
+    </div>
     <div class="col-right-1">
-      <img src="../assets/img/icons/refresh.svg" class="icon" (click)="getRecipes()">
+      <img src="../assets/img/icons/refresh.svg" class="icon turn" (click)="getRecipes()">
     </div>
     <table class="table col-center-10">
         <thead>

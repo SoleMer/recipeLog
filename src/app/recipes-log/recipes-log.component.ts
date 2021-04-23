@@ -15,6 +15,9 @@ export class RecipesLogComponent implements OnInit {
   response: any;
   loading: boolean = false;
   permission$: Observable<boolean>;
+  patient: string = ' ';
+  number_recipe: number = 0;
+  number_folder: number = 0;  
   
   constructor(private recipeDataSvc : RecipeDataService ,
     private loginSvc : LoginService) {
@@ -29,6 +32,7 @@ export class RecipesLogComponent implements OnInit {
   ngOnInit() {
     this.loginSvc.checkPermission();
     this.getRecipes();
+    //this.getThreeRecipes();
   }
 
   save() {
@@ -52,5 +56,53 @@ export class RecipesLogComponent implements OnInit {
       this.response = r;
     });
   }
+
+  getThreeRecipes() {
+    this.recipeDataSvc.getThreeRecipes()
+    .subscribe((r: any) => {
+      this.response = r;
+    });
+  }
+
+  searchPatient() {
+    this.recipeDataSvc.getPatient(this.patient)
+    .subscribe((r: any) => {
+      this.response = r;
+    });
+  }
+  searchRecipe() {
+    console.log("recipe");
+    this.recipeDataSvc.getRecipe(this.number_recipe)
+    .subscribe((r: any) => {
+      this.response = r;
+    });
+  }
+
+  searchFolder() {
+    console.log("folder");
+    this.recipeDataSvc.getFolder(this.number_folder)
+    .subscribe((r: any) => {
+      this.response = r;
+    });
+  }
+
+  searchFilter(){
+    console.log("filter");
+    console.log(this.patient === '');
+    if(this.patient === '') this.patient = 'a';
+    console.log(this.patient);
+    this.recipeDataSvc.getRecipeFilter(this.patient, this.number_recipe, this.number_folder)
+    .subscribe((r: any) => {
+      this.response = r;
+    });
+  }
+
+  clearFilter() {
+    this.patient = '';
+    this.number_recipe = 0;
+    this.number_folder = 0;
+    this.getRecipes();
+  }
+
 
 }
